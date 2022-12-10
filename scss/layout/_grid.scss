@@ -1,0 +1,84 @@
+@use '../util' as u;
+
+%widget {
+    padding: u.rem(40);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: u.rem(40);
+    // max-width: 1000px;
+    width: min(100% - 40px, 1000px);
+    // margin-left: auto;
+    // margin-right: auto;
+    margin-inline: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    // for margin: top right bottom left
+    
+
+
+    @include u.breakpoint(large) {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto;
+        padding-left: 0;
+        padding-right: 0;
+
+    }
+
+    &__main, &__aside {
+        padding: u.rem(40);
+    }
+
+    &__main{
+        background-color: hsl(240, 99%, 33%);
+
+        @include u.breakpoint(medium){
+            background-color: hsl(120, 100%, 16%);
+        }
+
+        @include u.breakpoint(large){
+            background-color: hsl(39, 100%, 35%);
+        }
+    
+    }
+
+    &__aside{
+        
+
+       @include u.breakpoint-down(medium){
+        text-align: center;
+       }
+
+       @include u.breakpoint-down(small){
+        text-align: right;
+
+       }
+
+    }
+
+    &__widget {
+        // $widget: &;
+       
+        // padding: u.rem(16);
+
+        
+        &--magenta {
+            @extend %widget;
+            background-color: hsl(300, 100%, 30%);
+
+        }
+
+        &--green {
+           // @extend #{$widget}; // interpolation .grid__widget
+            @extend %widget;
+            background-color: hsl(120, 100%, 27%);
+        }
+    }
+
+}
+
+// & - parent
+// @media (min-width:900px) and (max-width:1920px)
